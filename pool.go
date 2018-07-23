@@ -43,6 +43,7 @@ func (p *Pool) Release(t *time.Timer) {
 		select {
 		case <-t.C:
 		default:
+			return
 		}
 	}
 
