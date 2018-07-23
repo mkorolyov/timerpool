@@ -13,7 +13,11 @@ type Pool struct {
 
 // New builds new timer pool
 func New(timeout time.Duration) *Pool {
-	return &Pool{timeout: timeout}
+	p := Pool{timeout: timeout}
+	p.New = func() interface{} {
+		return time.NewTimer(p.timeout)
+	}
+	return &p
 }
 
 // Acquire loads free timer from pool or creates new one.
