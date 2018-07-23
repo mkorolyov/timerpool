@@ -22,17 +22,10 @@ func TestNew(t *testing.T) {
 }
 
 func TestPool_Acquire(t *testing.T) {
-	p := Pool{timeout: time.Second}
+	p := &Pool{timeout: time.Second}
 	assert.NotNil(t, p.Acquire(), "unexpected nil timer")
 
 	activeTimer := time.NewTimer(time.Minute)
 	p.Put(activeTimer)
 	assert.NotEqual(t, activeTimer, p.Acquire(), "active timer should not be returned")
-}
-
-func TestPool_Release(t *testing.T) {
-	p := Pool{timeout: time.Second}
-	activeTimer := time.NewTimer(time.Minute)
-	p.Release(activeTimer)
-	assert.Equal(t, activeTimer, p.Acquire(), "timer should be stopped and reused")
 }
