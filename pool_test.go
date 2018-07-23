@@ -15,10 +15,6 @@ func TestNew(t *testing.T) {
 	assert.True(t, ok, "unexpected type %T", i)
 	assert.NotNil(t, timer.C, "timer channel is nil")
 	p.Release(timer)
-
-	timer2 := p.Get().(*time.Timer)
-	assert.Equal(t, timer, timer2, "not the same timer")
-	assert.NotEqual(t, timer, p.Get().(*time.Timer), "the same timer")
 }
 
 func TestPool_Acquire(t *testing.T) {
