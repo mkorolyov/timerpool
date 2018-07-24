@@ -4,13 +4,13 @@
 
 sync.Pool of reusable timer.Timer with constant timeout passed.
 
-####Get the package using:
+#### Get the package using:
 
 ```
 $ go get -u -v github.com/mkorolyov/timerpool
 ```
 
-####Usage
+#### Usage
 
 Create a pool with 
 ```go
