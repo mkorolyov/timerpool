@@ -22,7 +22,9 @@ func New(timeout time.Duration) *Pool {
 
 // Acquire loads free timer from pool or creates new one.
 func (p *Pool) Acquire() *time.Timer {
-	return p.p.Get().(*time.Timer)
+	t := p.p.Get().(*time.Timer)
+	t.Reset(p.timeout)
+	return t
 }
 
 // Release frees timer and returns it to the pool if possible
@@ -34,6 +36,5 @@ func (p *Pool) Release(t *time.Timer) {
 			return
 		}
 	}
-	t.Reset(p.timeout)
 	p.p.Put(t)
 }
