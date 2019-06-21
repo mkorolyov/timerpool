@@ -20,5 +20,6 @@ pool := New(time.Second)
 then in a hot peace of code acquire the timer and don't forget to release it.
 ```go
 timer := pool.Acquire()
-defer pool.Release(timer)
+// use it
+pool.Release(timer)
 ```
